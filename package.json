@@ -2,7 +2,13 @@
   "name": "dm124-rest-api",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
   "repository": "https://github.com/michelaap/dm124-rest-api.git",
   "author": "Michel Pereira <michel.augusto@pg.inatel.br>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
