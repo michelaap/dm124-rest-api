@@ -1,8 +1,22 @@
+const bcrypt = require('bcryptjs');
+
 const User = require('../models/User');
 
 module.exports = {
   async createUser(request, response) {
+    const { name, email, password } = request.body;
+    const hashPassword = await bcrypt.hash(password, 8);
 
+    const user = new User({
+      name,
+      email,
+      password: hashPassword,
+    });
+
+    const userData = await user.save();
+    return response
+      .status(201)
+      .json({ message: 'User created!', userId: userData._id });
   },
   async getUser(request, response) {
     const userId = request.params.id;
