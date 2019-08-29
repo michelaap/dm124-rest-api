@@ -8,4 +8,6 @@ app.use('/token', require('./routes/auth'));
 app.use('/products', require('./routes/product'));
 app.use('/orders', require('./routes/order'));
 
+app.use(require('./middleware/not-found'));
+
 module.exports = app;
