@@ -1,13 +1,22 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const { validationResult } = require('express-validator');
 
 const User = require('../models/User');
 
 module.exports = {
   async token(request, response) {
     try {
-      const { email, password } = request.body;
+      const errors = validationResult(request);
 
+      if (!errors.isEmpty()) {
+        const [error] = errors.array();
+        return response
+          .status(422)
+          .json({ error: error.msg || 'Validation failed!' });
+      }
+
+      const { email, password } = request.body;
       const user = await User.findOne({ email });
       const isValid = await bcrypt.compare(password, user.password);
 

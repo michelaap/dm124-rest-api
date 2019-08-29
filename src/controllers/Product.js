@@ -1,8 +1,19 @@
+const { validationResult } = require('express-validator');
+
 const Product = require('../models/Product');
 
 module.exports = {
   async createProduct(request, response) {
     try {
+      const errors = validationResult(request);
+
+      if (!errors.isEmpty()) {
+        const [error] = errors.array();
+        return response
+          .status(422)
+          .json({ error: error.msg || 'Validation failed!' });
+      }
+
       const { name, description, price } = request.body;
       const product = await Product.create({
         name,
@@ -21,6 +32,15 @@ module.exports = {
   },
   async getProduct(request, response) {
     try {
+      const errors = validationResult(request);
+
+      if (!errors.isEmpty()) {
+        const [error] = errors.array();
+        return response
+          .status(422)
+          .json({ error: error.msg || 'Validation failed!' });
+      }
+
       const productId = request.params.id;
       const product = await Product.findById(productId);
 
@@ -56,6 +76,15 @@ module.exports = {
   },
   async updateProduct(request, response) {
     try {
+      const errors = validationResult(request);
+
+      if (!errors.isEmpty()) {
+        const [error] = errors.array();
+        return response
+          .status(422)
+          .json({ error: error.msg || 'Validation failed!' });
+      }
+
       const productId = request.params.id;
       const { price } = request.body;
       const product = await Product.findById(productId);
@@ -78,6 +107,15 @@ module.exports = {
   },
   async deleteProduct(request, response) {
     try {
+      const errors = validationResult(request);
+
+      if (!errors.isEmpty()) {
+        const [error] = errors.array();
+        return response
+          .status(422)
+          .json({ error: error.msg || 'Validation failed!' });
+      }
+
       const productId = request.params.id;
       const product = await Product.findByIdAndRemove(productId);
 

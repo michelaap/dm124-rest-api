@@ -1,10 +1,20 @@
 const bcrypt = require('bcryptjs');
+const { validationResult } = require('express-validator');
 
 const User = require('../models/User');
 
 module.exports = {
   async createUser(request, response) {
     try {
+      const errors = validationResult(request);
+
+      if (!errors.isEmpty()) {
+        const [error] = errors.array();
+        return response
+          .status(422)
+          .json({ error: error.msg || 'Validation failed!' });
+      }
+
       const { name, email, password } = request.body;
       const hashPassword = await bcrypt.hash(password, 8);
 
@@ -28,6 +38,15 @@ module.exports = {
   },
   async getUser(request, response) {
     try {
+      const errors = validationResult(request);
+
+      if (!errors.isEmpty()) {
+        const [error] = errors.array();
+        return response
+          .status(422)
+          .json({ error: error.msg || 'Validation failed!' });
+      }
+
       const userId = request.params.id;
       const user = await User
         .findById(userId)
@@ -58,6 +77,15 @@ module.exports = {
   },
   async updateUser(request, response) {
     try {
+      const errors = validationResult(request);
+
+      if (!errors.isEmpty()) {
+        const [error] = errors.array();
+        return response
+          .status(422)
+          .json({ error: error.msg || 'Validation failed!' });
+      }
+
       const userId = request.params.id;
       const { role } = request.body;
       const user = await User.findById(userId);
@@ -88,6 +116,15 @@ module.exports = {
   },
   async deleteUser(request, response) {
     try {
+      const errors = validationResult(request);
+
+      if (!errors.isEmpty()) {
+        const [error] = errors.array();
+        return response
+          .status(422)
+          .json({ error: error.msg || 'Validation failed!' });
+      }
+
       const userId = request.params.id;
       const user = await User.findByIdAndRemove(userId);
 
