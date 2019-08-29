@@ -4,11 +4,18 @@ const routes = express.Router();
 const OrderController = require('../controllers/Order');
 const auth = require('../middleware/auth');
 
-routes.get('/', OrderController.getOrders);
-routes.get('/:id', OrderController.getOrder);
+const {
+  createOrder,
+  getOrder,
+  updateOrder,
+  deleteOrder,
+} = require('../middleware/validator');
 
-routes.post('/', auth, OrderController.createOrder);
-routes.patch('/', OrderController.updateOrder);
-routes.delete('/:id', OrderController.deleteOrder);
+routes.get('/', OrderController.getOrders);
+routes.get('/:id', getOrder, OrderController.getOrder);
+
+routes.post('/', auth, createOrder, OrderController.createOrder);
+routes.patch('/', auth, updateOrder, OrderController.updateOrder);
+routes.delete('/:id', auth, deleteOrder, OrderController.deleteOrder);
 
 module.exports = routes;
