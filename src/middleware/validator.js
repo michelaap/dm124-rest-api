@@ -133,7 +133,7 @@ const updateDelivery = [
     .isEmpty(),
 
   body('receiverCpf')
-    .isLength({ min: 14, max: 14 })
+    .isLength({ min: 11, max: 11 })
     .isInt(),
 
   body('receiverIsOwner')

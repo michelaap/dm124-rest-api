@@ -1,5 +1,4 @@
 const Delivery = require('../models/Delivery');
-const Order = require('../models/Order');
 
 module.exports = {
   async createDelivery(request, response) {
@@ -13,7 +12,7 @@ module.exports = {
         geographicLocation
       } = request.body;
 
-      const delivery = Delivery.create({
+      const delivery = await Delivery.create({
         orderId,
         userId,
         receiverName,

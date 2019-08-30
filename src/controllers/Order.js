@@ -32,7 +32,7 @@ module.exports = {
         }
       }, 0);
 
-      const createOrder = Order.create({
+      const createOrder = await Order.create({
         userId,
         products: [...products],
         price: priceTotal.toFixed(3)
