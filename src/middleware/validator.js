@@ -107,6 +107,43 @@ const deleteOrder = [
   check('id').isMongoId()
 ];
 
+const createDelivery = [
+  body('orderId').isMongoId(),
+  body('receiverName')
+    .not()
+    .isEmpty(),
+
+  body('receiverCpf')
+    .isLength({ min: 14, max: 14 })
+    .isInt(),
+
+  body('receiverIsOwner')
+    .isBoolean(),
+];
+
+const getDelivery = [
+  check('id').isMongoId()
+];
+
+const updateDelivery = [
+  check('id').isMongoId(),
+  body('orderId').isMongoId(),
+  body('receiverName')
+    .not()
+    .isEmpty(),
+
+  body('receiverCpf')
+    .isLength({ min: 14, max: 14 })
+    .isInt(),
+
+  body('receiverIsOwner')
+    .isBoolean(),
+];
+
+const deleteDelivery = [
+  check('id').isMongoId()
+];
+
 module.exports = {
   signup,
   signin,
@@ -118,5 +155,9 @@ module.exports = {
   updateOrder,
   updateProduct,
   deleteOrder,
-  deleteProduct
+  deleteProduct,
+  createDelivery,
+  getDelivery,
+  updateDelivery,
+  deleteDelivery
 }
