@@ -7,6 +7,7 @@ app.use('/users', require('./routes/user'));
 app.use('/token', require('./routes/auth'));
 app.use('/products', require('./routes/product'));
 app.use('/orders', require('./routes/order'));
+app.use('/deliverys', require('./routes/delivery'));
 
 app.use(require('./middleware/not-found'));
 
