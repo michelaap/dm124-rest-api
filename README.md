@@ -40,8 +40,43 @@ eg: "eyJhbGciOiJ..."
 
 ### How to create a product ?
 
-POST - https://dm124-rest-api.herokuapp.com/product
+POST - https://dm124-rest-api.herokuapp.com/products
+
+{
+	"name": "Whey Protein",
+	"description": "supplement",
+	"price": 239.80
+}
+
+...
+
+POST /orders
+
+{
+	"products": [
+		{"productId": "ID", "quantity": 1 },
+		{"productId": "ID", "quantity": 1 }
+	]
+}
+
+PATCH /orders/:id
+'CLOSED' or 'CANCELED'
+
+{
+  "status": "CLOSED"
+}
 
 * Note.
-POST Requests
-Authorization - Bearer Token
+If order is finished one delivery will be created.
+
+PATCH /deliveries/:id
+
+{
+  receiverName: "Foo",
+  receiverCpf: "99999999999",
+  receiverIsOwner: true
+}
+
+* Note.
+POST, PATCH, DELETE
+Required: Authorization - Bearer Token
