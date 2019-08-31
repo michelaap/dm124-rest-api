@@ -51,13 +51,13 @@ module.exports = {
   },
   async getDeliverys(request, response) {
     try {
-      const deliverys = await Delivery.find().sort('-createdAt');
+      const deliveries = await Delivery.find().sort('-createdAt');
 
       if (!deliverys) {
         return response.status(204).end();
       }
 
-      return response.json(deliverys);
+      return response.json(deliveries);
     }
     catch(error) {
       console.log(error.message);
