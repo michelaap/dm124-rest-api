@@ -86,17 +86,32 @@ module.exports = {
           .json({ error: error.msg || 'Validation failed!' });
       }
 
+      const { userId: userIdToken, role } = request.user;
+      const { name, email, password } = request.body;
+
       const userId = request.params.id;
-      const { role } = request.body;
       const user = await User.findById(userId);
 
       if (!user) {
         return response
-          .status(404)
-          .json({ message: 'User not found!' })
+        .status(404)
+        .json({ message: 'User not found!' })
       }
 
-      user.role = role;
+      if (userIdToken !== userId && role !== 'ADMIN') {
+        return response
+          .status(403)
+          .json({ message: 'Not Allowed!' });
+      }
+
+      user.name = name || user.name;
+      user.email = email || user.email;
+
+      if (password) {
+        const hashPassword = await bcrypt.hash(password, 8);
+        user.password = hashPassword;
+      }
+
       await user.save();
 
       const userUpdated = {
@@ -125,7 +140,15 @@ module.exports = {
           .json({ error: error.msg || 'Validation failed!' });
       }
 
+      const { userId: userIdToken, role } = request.user;
       const userId = request.params.id;
+
+      if (role !== 'ADMIN' && userIdToken !== userId) {
+        return response
+          .status(403)
+          .json({ message: 'Not Allowed!' });
+      }
+
       const user = await User.findByIdAndRemove(userId);
 
       if (!user) {
