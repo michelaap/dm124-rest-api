@@ -27,7 +27,7 @@ module.exports = {
       console.log(error.message);
       return response
         .status(500)
-        .json({ error: 'We are sorry, try again lether' });
+        .json({ error: 'We are sorry, try again leter' });
     }
   },
   async getProduct(request, response) {
@@ -54,7 +54,7 @@ module.exports = {
       console.log(error.message);
       return response
         .status(500)
-        .json({ error: 'We are sorry, try again lether' });
+        .json({ error: 'We are sorry, try again leter' });
     }
   },
   async getProducts(request, response) {
@@ -71,7 +71,7 @@ module.exports = {
       console.log(error.message);
       return response
         .status(500)
-        .json({ error: 'We are sorry, try again lether' });
+        .json({ error: 'We are sorry, try again leter' });
     }
   },
   async updateProduct(request, response) {
@@ -102,7 +102,7 @@ module.exports = {
       console.log(error.message);
       return response
         .status(500)
-        .json({ error: 'We are sorry, try again lether' });
+        .json({ error: 'We are sorry, try again leter' });
     }
   },
   async deleteProduct(request, response) {
@@ -129,7 +129,7 @@ module.exports = {
       console.log(error.message);
       return response
         .status(500)
-        .json({ error: 'We are sorry, try again lether' });
+        .json({ error: 'We are sorry, try again leter' });
     }
   }
 }

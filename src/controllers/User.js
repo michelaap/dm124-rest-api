@@ -33,7 +33,7 @@ module.exports = {
       console.log(error.message);
       return response
         .status(500)
-        .json({ error: 'We are sorry, try again lether' });
+        .json({ error: 'We are sorry, try again leter' });
     }
   },
   async getUser(request, response) {
@@ -57,7 +57,7 @@ module.exports = {
       console.log(error.message);
       return response
         .status(500)
-        .json({ error: 'We are sorry, try again lether' });
+        .json({ error: 'We are sorry, try again leter' });
     }
   },
   async getUsers(request, response) {
@@ -72,7 +72,7 @@ module.exports = {
       console.log(error.message);
       return response
         .status(500)
-        .json({ error: 'We are sorry, try again lether' });
+        .json({ error: 'We are sorry, try again leter' });
     }
   },
   async updateUser(request, response) {
@@ -126,7 +126,7 @@ module.exports = {
       console.log(error.message);
       return response
         .status(500)
-        .json({ error: 'We are sorry, try again lether' });
+        .json({ error: 'We are sorry, try again leter' });
     }
   },
   async deleteUser(request, response) {
@@ -162,7 +162,7 @@ module.exports = {
       console.log(error.message);
       return response
         .status(500)
-        .json({ error: 'We are sorry, try again lether' });
+        .json({ error: 'We are sorry, try again leter' });
     }
   }
 }
