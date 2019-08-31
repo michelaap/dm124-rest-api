@@ -49,11 +49,11 @@ module.exports = {
         .json({ error: 'We are sorry, try again leter' });
     }
   },
-  async getDeliverys(request, response) {
+  async getDeliveries(request, response) {
     try {
       const deliveries = await Delivery.find().sort('-createdAt');
 
-      if (!deliverys) {
+      if (!deliveries) {
         return response.status(204).end();
       }
 

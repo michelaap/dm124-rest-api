@@ -10,7 +10,7 @@ const {
   deleteDelivery
 } = require('../middleware/validator');
 
-routes.get('/', DeliveryController.getDeliverys);
+routes.get('/', DeliveryController.getDeliveries);
 routes.get('/:id', getDelivery, DeliveryController.getDelivery);
 
 routes.post('/', auth, createDelivery, DeliveryController.createDelivery);
