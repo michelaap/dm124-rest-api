@@ -15,7 +15,7 @@ routes.get('/', OrderController.getOrders);
 routes.get('/:id', getOrder, OrderController.getOrder);
 
 routes.post('/', auth, createOrder, OrderController.createOrder);
-routes.patch('/', auth, updateOrder, OrderController.updateOrder);
+routes.patch('/:id', auth, updateOrder, OrderController.updateOrder);
 routes.delete('/:id', auth, deleteOrder, OrderController.deleteOrder);
 
 module.exports = routes;

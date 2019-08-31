@@ -2,6 +2,7 @@ const { validationResult } = require('express-validator');
 
 const Order = require('../models/Order');
 const Product = require('../models/Product');
+const Delivery = require('../models/Delivery');
 
 module.exports = {
   async createOrder(request, response) {
@@ -105,6 +106,7 @@ module.exports = {
       }
 
       const orderId = request.params.id;
+      const { userId } = request.user;
       const { status } = request.body;
 
       const order = await Order.findById(orderId);
@@ -115,6 +117,16 @@ module.exports = {
 
       order.status = status
       await order.save();
+
+      if (status === 'CLOSED') {
+        const delivery = await Delivery.create({
+          orderId,
+          userId,
+        });
+
+        await delivery.save();
+      }
+
       return response.json({ message: 'Order updated!' });
     }
     catch(error) {

@@ -100,7 +100,7 @@ const updateOrder = [
   body('status')
     .not()
     .isEmpty()
-    .isIn(['OPEN', 'CANCELED', 'CLOSED'])
+    .isIn(['OPENNED', 'CANCELED', 'CLOSED'])
 ];
 
 const deleteOrder = [

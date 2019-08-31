@@ -15,7 +15,7 @@ routes.get('/', ProductController.getProducts);
 routes.get('/:id', getProduct, ProductController.getProducts);
 
 routes.post('/', auth, createProduct, ProductController.createProduct);
-routes.patch('/', auth, updateProduct, ProductController.updateProduct);
+routes.patch('/:id', auth, updateProduct, ProductController.updateProduct);
 routes.delete('/:id', auth, deleteProduct, ProductController.deleteProduct);
 
 module.exports = routes;

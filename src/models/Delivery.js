@@ -14,15 +14,15 @@ const DeliverySchema = new mongoose.Schema({
   },
   receiverName: {
     type: String,
-    required: true
+    required: false
   },
   receiverCpf: {
     type: String,
-    required: true
+    required: false
   },
   receiverIsOwner: {
     type: Boolean,
-    required: true
+    required: false
   },
   geographicLocation: {
     type: String,
